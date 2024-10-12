@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        @font-face {
+            font-family: 'Blomberg';
+            src: url('/fonts/Blomberg-8MKKZ.otf') format('opentype'); /* Adjust the path to your font */
+        }
+
+        body {
+            background-image: url('/images/addanime-image.jpg'); /* Add your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            font-family: 'Blomberg', sans-serif; /* Apply Blomberg font to body */
+            min-height: 100vh; /* Ensure the body takes full height */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Overlay for better contrast */
+            z-index: -1;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            margin: 20px;
+            max-width: 600px; /* Limit the max width for better visibility */
+        }
+
+        .form-container h2 {
+            color: #ff4b5c;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-family: 'Blomberg', sans-serif; /* Apply Blomberg font */
+        }
+
+        .form-container label {
+            font-family: 'Blomberg', sans-serif; /* Apply Blomberg font */
+            color: #4A5568; /* Adjust label color as needed */
+        }
+
+        .form-container input,
+        .form-container textarea {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Blomberg', sans-serif; /* Apply Blomberg font */
+            width: calc(100% - 24px); /* Adjust width for padding */
+        }
+
+        .form-container input:focus,
+        .form-container textarea:focus {
+            border-color: #ff4b5c;
+            box-shadow: 0 4px 12px rgba(255, 75, 92, 0.5);
+        }
+
+        .form-container button {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+            margin-top: 1rem;
+            font-family: 'Blomberg', sans-serif; /* Apply Blomberg font */
+        }
+
+        .form-container button:hover {
+            background-color: #ff2e42;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 75, 92, 0.5);
+        }
+
+        .form-container a {
+            color: #ff4b5c;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-family: 'Blomberg', sans-serif; /* Apply Blomberg font */
+        }
+
+        .form-container a:hover {
+            color: #ff2e42;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center">
+    <div class="form-container">
+        <h2>Add Anime</h2>
+        <form action="/dashboard/add-anime" method="POST">
+            <div class="mb-4">
+                <label for="anime_title" class="block text-gray-700 text-sm font-medium">Anime Title</label>
+                <input type="text" name="anime_title" id="anime_title" required class="border border-gray-300 rounded-lg w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700 text-sm font-medium">Description (Optional)</label>
+                <textarea name="description" id="description" class="border border-gray-300 rounded-lg w-full py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+            </div>
+            <button type="submit" class="bg-indigo-600 text-white rounded-lg py-2 px-4 hover:bg-indigo-700 transition duration-200 w-full">Add Anime</button>
+        </form>
+        <p class="mt-4 text-center text-sm text-gray-500">Want to add more anime? Go to the <a href="/dashboard" class="text-indigo-600 hover:underline">dashboard</a>.</p>
+    </div>
+</body>
+</html>

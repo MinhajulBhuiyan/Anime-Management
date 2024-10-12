@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        @font-face {
+            font-family: 'Blomberg';
+            src: url('/fonts/Blomberg-8MKKZ.otf') format('opentype');
+        }
+
+        body {
+            background-image: url('/images/login-image.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Blomberg', sans-serif; /* Main font for body */
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Dark overlay for emphasis */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        .form-container h2 {
+            color: #ff4b5c;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Default font for input fields */
+        .form-container input {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif; /* Set default font for input fields */
+        }
+
+        .form-container input:focus {
+            border-color: #ff4b5c;
+            box-shadow: 0 4px 12px rgba(255, 75, 92, 0.5);
+        }
+
+        .form-container button {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+        }
+
+        .form-container button:hover {
+            background-color: #ff2e42;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 75, 92, 0.5);
+        }
+
+        .form-container a {
+            color: #ff4b5c;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .form-container a:hover {
+            color: #ff2e42;
+            text-decoration: underline;
+        }
+
+        label {
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        input {
+            margin-bottom: 16px;
+        }
+
+        .show-hide-text {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #ff4b5c;
+            font-size: 0.9rem;
+            padding: 0;
+        }
+
+        /* Ensure input field width is correct when toggling */
+        #password {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="flex justify-center items-center h-screen">
+    <div class="form-container w-full max-w-sm">
+        <h2>Welcome Back!</h2>
+        <% if (typeof error !== 'undefined') { %>
+        <div class="bg-red-200 text-red-800 p-2 mb-4 rounded">
+            <%= error %>
+        </div>
+        <% } %>
+        <form action="/login" method="POST">
+            <div class="mb-4 input-container relative">
+                <label for="email" class="block font-medium text-left">Email</label>
+                <input type="email" name="email" id="email" required class="w-full focus:outline-none pr-12">
+            </div>
+            <div class="mb-4 input-container relative">
+                <label for="password" class="block font-medium text-left">Password</label>
+                <input type="password" name="password" id="password" required class="w-full focus:outline-none pr-12"
+                    placeholder="Password" autocomplete="off">
+                <span id="toggle-password" class="show-hide-text">Show</span>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <p class="mt-4">Don't have an account? <a href="/signup">Sign up here</a>.</p>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const togglePasswordText = document.getElementById('toggle-password');
+
+        // Toggle password visibility
+        togglePasswordText.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Toggle text between "Show" and "Hide"
+            togglePasswordText.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+    </script>
+</body>
+
+</html>

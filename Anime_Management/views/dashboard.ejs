@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        @font-face {
+            font-family: 'Blomberg';
+            src: url('/fonts/Blomberg-8MKKZ.otf') format('opentype');
+        }
+
+        body {
+            background-image: url('/images/dashboard-image.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Blomberg', sans-serif; /* Main font for body */
+            position: relative;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h1 {
+            color: #ff4b5c;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .anime-item {
+            background-color: #f2f2f2;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .anime-item:hover {
+            background-color: #ffebee;
+            box-shadow: 0 4px 12px rgba(255, 75, 92, 0.5);
+        }
+
+        .anime-link {
+            color: #ff4b5c;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .anime-link:hover {
+            color: #ff2e42;
+            text-decoration: underline;
+        }
+
+        .add-anime-btn {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+        }
+
+        .add-anime-btn:hover {
+            background-color: #ff2e42;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 75, 92, 0.5);
+        }
+
+        .logout-link {
+            color: #ff4b5c;
+            font-weight: bold;
+            transition: color 0.2s ease;
+        }
+
+        .logout-link:hover {
+            color: #ff2e42;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center py-10">
+    <div class="card w-full max-w-3xl">
+        <h1>User Dashboard</h1>
+
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 text-center">Your Favorite Anime</h2>
+        <div class="space-y-4">
+            <% if (favoriteAnime.length > 0) { %>
+                <% favoriteAnime.forEach(anime => { %>
+                    <div class="flex justify-between items-center p-4 anime-item">
+                        <span class="text-lg font-medium text-gray-900"><%= anime.anime_title %></span>
+                        <div class="flex items-center space-x-4">
+                            <a href="/edit/<%= anime.id %>" class="anime-link">Edit</a>
+                            <a href="/description/<%= anime.id %>" class="anime-link">Description</a>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="p-4 bg-gray-200 rounded-lg shadow-md">
+                    <p class="text-gray-600 text-center">No favorite anime found.</p>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="mt-10 text-center">
+            <a href="/dashboard/add-anime" class="add-anime-btn">Add New Anime</a>
+        </div>
+
+        <div class="mt-6 text-center">
+            <a href="/login" class="logout-link">Logout</a>
+        </div>
+    </div>
+</body>
+
+</html>

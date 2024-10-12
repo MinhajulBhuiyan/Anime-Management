@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Anime Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        @font-face {
+            font-family: 'Blomberg';
+            src: url('/fonts/Blomberg-8MKKZ.otf') format('opentype');
+        }
+
+        body {
+            background-image: url('/images/landing-image.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Blomberg', sans-serif;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Remove the black shade overlay */
+        /* body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        } */
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: scale(1.05); /* Slightly enlarge the container on hover */
+        }
+
+        .form-container h1 {
+            color: #ff4b5c;
+            margin-bottom: 1.5rem;
+            font-size: 3rem; /* Increased size for the heading */
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .form-container p {
+            color: black; /* Changed to black for better visibility */
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem; /* Increased font size for description */
+        }
+
+        .button {
+            background-color: #ff4b5c;
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease; /* Added box-shadow transition */
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 75, 92, 0.5); /* Added shadow to buttons */
+        }
+
+        .button:hover {
+            background-color: #ff2e42;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 75, 92, 0.7); /* Darker shadow on hover */
+        }
+
+        footer {
+            margin-top: 20px;
+            color: black; /* Changed footer color to black */
+        }
+
+        /* Add animation for the buttons */
+        .button:active {
+            transform: scale(0.95); /* Slightly shrink the button when clicked */
+        }
+    </style>
+</head>
+<body class="flex justify-center items-center py-10">
+    <div class="form-container w-full max-w-md">
+        <h1>Welcome to Anime Tracker</h1>
+        <p>Discover, track, and share your favorite anime!</p>
+        
+        <div class="flex flex-col space-y-4 justify-center items-center">
+            <a href="/login" class="button">Login</a>
+            <a href="/signup" class="button">Sign Up</a>
+        </div>
+
+        <footer class="text-center text-sm">
+            &copy; 2024 Anime Tracker. All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>
